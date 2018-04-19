@@ -13,9 +13,6 @@ class Contract extends Model
         return $this->hasMany('App\Payment');
     }
 
-    
-    
-    
     public function projects()
     {
         return $this->hasMany('App\Project');
