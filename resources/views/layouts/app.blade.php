@@ -1,149 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="ThemeBucket">
-        <link rel="shortcut icon" href="<?php echo url('/'); ?>/images/favicon.png">
+    <title>Laravel</title>
 
-        <title>Blank page</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
-        <!--Core CSS -->
-        <link href="<?php echo url('/'); ?>/bs3/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?php echo url('/'); ?>/css/bootstrap-reset.css" rel="stylesheet">
-        <link href="<?php echo url('/'); ?>/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
-        <!-- Custom styles for this template -->
-        <link href="<?php echo url('/'); ?>/css/style.css" rel="stylesheet">
-        <link href="<?php echo url('/'); ?>/css/style-responsive.css" rel="stylesheet" />
-        <script src="<?php echo url('/'); ?>/js/jquery.js"></script>
-        <!-- Just for debugging purposes. Don't actually copy this line! -->
-        <!--[if lt IE 9]>
-<script src="<?php echo url('/'); ?>/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <style>
+        body {
+            font-family: 'Lato';
+        }
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
-    </head>
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body id="app-layout">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
 
-    <body>
-        <section id="container" >
-            <!--header start-->
-            <header class="header fixed-top clearfix">
-                <!--logo start-->
-                <div class="brand">
-                    <a href="<?php echo url('/'); ?>/index.html" class="logo">
-                        <img src="<?php echo url('/'); ?>/images/logo.png" alt="">
-                    </a>
-                    <div class="sidebar-toggle-box">
-                        <div class="fa fa-bars"></div>
-                    </div>
-                </div>
-                <!--logo end-->
-                <div class="top-nav clearfix">
-                    <!--search & user info start-->
-                    <ul class="nav pull-right top-menu">
-                        <li>
-                            <input type="text" class="form-control search" placeholder=" Search">
-                        </li>
-                        <!-- user login dropdown start-->
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Laravel
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/home') }}">Home</a></li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
                         <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="<?php echo url('/'); ?>/#">
-                                <img alt="" src="images/avatar1_small.jpg">
-                                <span class="username">John Doe</span>
-                                <b class="caret"></b>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu extended logout">
-                                <li><a href="<?php echo url('/'); ?>/#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                                <li><a href="<?php echo url('/'); ?>/#"><i class="fa fa-cog"></i> Settings</a></li>
-                                <li><a href="<?php echo url('/'); ?>/login.html"><i class="fa fa-key"></i> Log Out</a></li>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                    </ul>
-                    <!--search & user info end-->
-                </div>
-            </header>
-            <!--header end-->
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <aside>
-                <div id="sidebar" class="nav-collapse">
-                    <!-- sidebar menu start-->            <div class="leftside-navigation">
-                    <ul class="sidebar-menu" id="nav-accordion">
-                        <li>
-                            <a href="<?php echo url('/'); ?>/index.html">
-                                <i class="fa fa-dashboard"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="<?php echo url('/'); ?>/javascript:;">
-                                <i class="fa fa-laptop"></i>
-                                <span>Forms</span>
-                            </a>
-                            <ul class="sub">
-                                <li><a href="<?php echo url('/'); ?>/admin/suppliers/create">Supplier</a></li>
-                                <li><a href="<?php echo url('/'); ?>/admin/projects/create">Projects</a></li>
-                                <li><a href="<?php echo url('/'); ?>/admin/contracts/create">Contracts</a></li>
-                                <li><a href="<?php echo url('/'); ?>/admin/payments/create">Payments</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="<?php echo url('/'); ?>/login.html">
-                                <i class="fa fa-times"></i>
-                                <span>Log Out</span>
-                            </a>
-                        </li>
-                    </ul></div>        
-                    <!-- sidebar menu end-->
-                </div>
-            </aside>
-            <!--sidebar end-->
+    @yield('content')
 
-            <!--main content start-->
-            <section id="main-content">
-                <section class="wrapper">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- page start-->
-                            @if(session()->has('message.level'))
-                            <div class="alert alert-{{ session('message.level') }}"> 
-                                {!! session('message.content') !!}
-                            </div>
-                            @endif
-
-                            @yield("content")
-
-                            <!-- page end-->
-                        </div>
-                    </div>
-                </section>
-            </section>
-            <!--main content end-->
-
-        </section>
-
-        <script src="bs3/js/bootstrap.min.js"></script>
-        <script class="include" type="text/javascript" src="<?php echo url('/'); ?>/js/jquery.dcjqaccordion.2.7.js"></script>
-        <script src="<?php echo url('/'); ?>/js/jquery.scrollTo.min.js"></script>
-        <script src="<?php echo url('/'); ?>/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
-        <script src="<?php echo url('/'); ?>/js/jquery.nicescroll.js"></script>
-        <!--Easy Pie Chart-->
-        <!--<script src="<?php echo url('/'); ?>/js/easypiechart/jquery.easypiechart.js"></script>-->
-        <!--Sparkline Chart-->
-        <!--<script src="<?php echo url('/'); ?>/js/sparkline/jquery.sparkline.js"></script>-->
-        <!--jQuery Flot Chart-->
-        <!--        <script src="<?php echo url('/'); ?>/js/flot-chart/jquery.flot.js"></script>
-<script src="<?php echo url('/'); ?>/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="<?php echo url('/'); ?>/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="<?php echo url('/'); ?>/js/flot-chart/jquery.flot.pie.resize.js"></script>-->
-
-
-        <!--common script init for all pages-->
-        <script src="<?php echo url('/'); ?>/js/scripts.js"></script>
-
-    </body>
+    <!-- JavaScripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+</body>
 </html>

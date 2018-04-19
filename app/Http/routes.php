@@ -28,3 +28,7 @@ Route::resource('admin/payments', 'PaymentsController');
 Route::get('/admin/gallery', function () {
     return view("admin.gallery");
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
