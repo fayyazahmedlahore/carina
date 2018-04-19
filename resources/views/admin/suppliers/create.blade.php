@@ -14,6 +14,17 @@
             </header>
             <div class="panel-body">
                 <div class="form">
+                    {!! Form::open(array('route' => 'admin.suppliers.store')) !!}
+                    <div class="form-group">
+                        {{ Form::label('Bussiness Name', null, ['class' => 'control-label']) }}
+                        {{ Form::text('title', null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('Phone Number', null, ['class' => 'control-label']) }}
+                        {{ Form::text('body', null, ['class' => 'form-control']) }}
+                    </div>
+                    {{ Form::submit('Create Post', array('class' => 'btn btn-primary')) }}
+                    {!! Form::close() !!}
                     <form class="cmxform form-horizontal" id="supplier_form" method="POST" action="" >
                         <div class="form-group ">
                             <label for="firstname" class="control-label col-lg-3">Bussiness Name</label>

@@ -16,9 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin', function () {
-    return view("admin.index");
-});
+Route::resource('admin/suppliers', 'SuppliersController');
 
 
 Route::get('/admin/gallery', function () {
