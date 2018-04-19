@@ -86,9 +86,9 @@
                             </a>
                             <ul class="sub">
                                 <li><a href="<?php echo url('/'); ?>/admin/suppliers/create">Supplier</a></li>
-                                <li><a href="<?php echo url('/'); ?>/#">Projects</a></li>
-                                <li><a href="<?php echo url('/'); ?>/#">Contracts</a></li>
-                                <li><a href="<?php echo url('/'); ?>/#">Payments</a></li>
+                                <li><a href="<?php echo url('/'); ?>/admin/projects/create">Projects</a></li>
+                                <li><a href="<?php echo url('/'); ?>/admin/contracts/create">Contracts</a></li>
+                                <li><a href="<?php echo url('/'); ?>/admin/payments/create">Payments</a></li>
                             </ul>
                         </li>
                         <li>
