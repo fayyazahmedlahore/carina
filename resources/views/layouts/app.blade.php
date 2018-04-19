@@ -85,7 +85,7 @@
                                 <span>Forms</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="<?php echo url('/'); ?>/admin">Supplier</a></li>
+                                <li><a href="<?php echo url('/'); ?>/admin/suppliers/create">Supplier</a></li>
                                 <li><a href="<?php echo url('/'); ?>/#">Projects</a></li>
                                 <li><a href="<?php echo url('/'); ?>/#">Contracts</a></li>
                                 <li><a href="<?php echo url('/'); ?>/#">Payments</a></li>
@@ -106,11 +106,20 @@
             <!--main content start-->
             <section id="main-content">
                 <section class="wrapper">
-                    <!-- page start-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- page start-->
+                            @if(session()->has('message.level'))
+                            <div class="alert alert-{{ session('message.level') }}"> 
+                                {!! session('message.content') !!}
+                            </div>
+                            @endif
 
-                    @yield("content")
+                            @yield("content")
 
-                    <!-- page end-->
+                            <!-- page end-->
+                        </div>
+                    </div>
                 </section>
             </section>
             <!--main content end-->
