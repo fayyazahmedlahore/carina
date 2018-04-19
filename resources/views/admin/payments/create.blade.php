@@ -30,9 +30,13 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('Contract Number', null, ['class' => 'control-label col-lg-3']) }}
+                {{ Form::label('Contract', null, ['class' => 'control-label col-lg-3']) }}
                 <div class="col-lg-6">
-                    {{ Form::text('contract_number', null, ['class' => 'form-control']) }}
+                    <select class="form-control" name="contract_number">
+                        @foreach ($contracts as $contract) 
+                        <option value="{{$contract->id}}">{{$contract->contractor_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

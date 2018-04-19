@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Payment;
+use App\Contract;
 
 class PaymentsController extends Controller
 {
@@ -26,8 +27,10 @@ class PaymentsController extends Controller
      */
     public function create()
     {
+        $contracts = Contract::all();
+
         //
-        return view('admin.payments.create'); 
+        return view('admin.payments.create',compact('contracts')); 
     }
 
     /**
@@ -45,7 +48,7 @@ class PaymentsController extends Controller
         $payment->payment_date = $request->payment_date;
         $payment->amount = $request->payment_amount;
         $payment->contract_id = $request->contract_number;
-       
+
 
 
         if ($payment->save()) {

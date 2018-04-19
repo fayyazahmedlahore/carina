@@ -13,7 +13,8 @@
     </header>
     <div class="panel-body">
         <div class="form">
-            {!! Form::open(array('route' => 'admin.payments.store', 'class' => 'cmxform form-horizontal')) !!}
+
+            {!! Form::open(array('route' => 'admin.projects.store', 'class' => 'cmxform form-horizontal')) !!}
 
             <div class="form-group">
                 {{ Form::label('Project Name', null, ['class' => 'control-label col-lg-3']) }}
@@ -23,9 +24,9 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('City Number', null, ['class' => 'control-label col-lg-3']) }}
+                {{ Form::label('City Name', null, ['class' => 'control-label col-lg-3']) }}
                 <div class="col-lg-6">
-                    {{ Form::text('city_number', null, ['class' => 'form-control']) }}
+                    {{ Form::text('city_name', null, ['class' => 'form-control']) }}
                 </div>
             </div>
 
@@ -39,7 +40,11 @@
             <div class="form-group">
                 {{ Form::label('Contract', null, ['class' => 'control-label col-lg-3']) }}
                 <div class="col-lg-6">
-                    {{ Form::text('contract', null, ['class' => 'form-control']) }}
+                    <select class="form-control" name="contract_id">
+                        @foreach ($contracts as $contract) 
+                        <option value="{{$contract->id}}">{{$contract->contractor_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

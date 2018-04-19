@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Project;
+use App\Contract;
 
 class ProjectsController extends Controller
 {
@@ -25,8 +27,10 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.projects.create'); 
+        $contracts = Contract::all();
+
+
+        return view('admin.projects.create',compact('contracts')); 
     }
 
     /**
@@ -38,6 +42,24 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         //
+        $project = new Project; 
+
+        $project->contract_id = $request->contract_id;
+        $project->Name = $request->project_name;
+        $project->City_Name = $request->city_name;
+        $project->Status = $request->status;
+
+
+        if ($project->save()) {
+            $request->session()->flash('message.level', 'success');
+            $request->session()->flash('message.content', 'Record added successfully!');
+        } else {
+            $request->session()->flash('message.level', 'danger');
+            $request->session()->flash('message.content', 'Error!');
+        }
+
+        // redirect to another page
+        return redirect()->route('admin.projects.create');
     }
 
     /**
